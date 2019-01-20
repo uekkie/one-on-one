@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_20_083603) do
+ActiveRecord::Schema.define(version: 2019_01_20_084737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answer_boards", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "member_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_answer_boards_on_member_id"
+    t.index ["user_id"], name: "index_answer_boards_on_user_id"
+  end
 
   create_table "answers", force: :cascade do |t|
     t.text "content", default: "", null: false
@@ -66,6 +75,8 @@ ActiveRecord::Schema.define(version: 2019_01_20_083603) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "answer_boards", "members"
+  add_foreign_key "answer_boards", "users"
   add_foreign_key "answers", "members"
   add_foreign_key "question_answers", "answers"
   add_foreign_key "question_answers", "questions"
