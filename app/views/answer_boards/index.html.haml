@@ -1,2 +1,5 @@
-%h1 AnswerBoards#index
-%p Find me in app/views/answer_boards/index.html.haml
+- unless user_signed_in?
+  = link_to 'Googleアカウントでログイン', user_google_omniauth_authorize_path
+- else
+  %h1 回答の一覧
+  = link_to '質問の一覧へ', user_question_boards_path(current_user)

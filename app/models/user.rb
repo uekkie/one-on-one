@@ -5,6 +5,8 @@ class User < ApplicationRecord
   #        :recoverable, :rememberable, :validatable,
   devise :trackable, :omniauthable, omniauth_providers: %i(google)
 
+  has_many :question_boards
+
   protected
   def self.find_for_google(auth)
     user = User.find_by(email: auth.info.email)

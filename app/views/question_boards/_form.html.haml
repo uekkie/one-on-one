@@ -1,0 +1,15 @@
+= form_with(model: [user, board], local: true) do |form|
+  - if board.errors.any?
+    #error_explanation.alert.alert-danger
+      %ul
+        - board.errors.full_messages.each do |message|
+          %li #{message}
+
+  .field
+    = form.text_field :title, id: :item_title, placeholder: "タイトル", class: 'form-control'
+  .actions.text-right
+    = form.submit (yield :submit_label), class: 'btn btn-primary mt-1'
+
+= render "questions/question_list", questions: board.questions
+
+= render template: "questions/new"
