@@ -1,0 +1,5 @@
+%h1 回答依頼が届いています
+
+%ul
+  - @board.questions.each do |question|
+    %li= question.title

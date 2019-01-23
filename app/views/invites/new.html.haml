@@ -1,0 +1,17 @@
+%h1 メンバーへの回答依頼
+
+= link_to 'キャンセル', user_question_board_path(@user, @board)
+
+= form_with(model: [@user, @board, @invite], local: true) do |form|
+  - if @invite.errors.any?
+    #error_explanation.alert.alert-danger
+      %ul
+        - @invite.errors.full_messages.each do |message|
+          %li #{message}
+
+  .field
+    = form.text_field :name, placeholder: "名前", class: 'form-control'
+  .field
+    = form.text_field :email, placeholder: "メールアドレス", class: 'form-control'
+  .actions.text-right
+    = form.submit '送信', class: 'btn btn-primary mt-1'
