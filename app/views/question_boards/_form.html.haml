@@ -1,3 +1,5 @@
+= link_to 'キャンセル', user_question_board_path(user, board)
+
 = form_with(model: [user, board], local: true) do |form|
   - if board.errors.any?
     #error_explanation.alert.alert-danger
