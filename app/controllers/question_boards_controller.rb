@@ -1,6 +1,6 @@
 class QuestionBoardsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_board, only: %i(show edit)
+  before_action :set_board, only: %i(show edit update)
 
   def index
     @boards = current_user.question_boards.order(created_at: :desc)
@@ -31,6 +31,11 @@ class QuestionBoardsController < ApplicationController
         format.html { render :new }
       end
     end
+  end
+
+  def update
+    @board.update!(board_params)
+    redirect_to user_question_board_url(current_user, @board), notice: 'Board Updated!'
   end
 
   def destroy

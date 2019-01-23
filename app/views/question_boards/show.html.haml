@@ -1,3 +1,5 @@
-%h1= "質問 #{@board.title}"
+%h1= "質問:#{@board.title}"
+
+= render "questions/question_list", questions: @board.questions
 
 = link_to '質問のカスタマイズ', edit_user_question_board_path(current_user, @board)
