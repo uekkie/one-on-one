@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_22_082530) do
+ActiveRecord::Schema.define(version: 2019_01_23_132431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,17 @@ ActiveRecord::Schema.define(version: 2019_01_22_082530) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["member_id"], name: "index_answers_on_member_id"
+  end
+
+  create_table "invites", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "member_id"
+    t.bigint "question_board_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_invites_on_member_id"
+    t.index ["question_board_id"], name: "index_invites_on_question_board_id"
+    t.index ["user_id"], name: "index_invites_on_user_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -85,6 +96,9 @@ ActiveRecord::Schema.define(version: 2019_01_22_082530) do
   add_foreign_key "answer_boards", "members"
   add_foreign_key "answer_boards", "users"
   add_foreign_key "answers", "members"
+  add_foreign_key "invites", "members"
+  add_foreign_key "invites", "question_boards"
+  add_foreign_key "invites", "users"
   add_foreign_key "question_answers", "answers"
   add_foreign_key "question_boards", "users"
   add_foreign_key "questions", "question_boards"

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :answer_boards
     resources :question_boards do
       resources :questions
+      resources :invites
     end
   end
 end
