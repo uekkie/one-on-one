@@ -8,4 +8,9 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    = yield
+    .container.mt-3
+      - if alert
+        %p.alert.alert-danger= alert
+      - elsif notice
+        %p.alert.alert-success= notice
+      = yield

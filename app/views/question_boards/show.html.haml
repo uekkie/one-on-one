@@ -1,7 +1,8 @@
-%h1= "質問:#{@board.title}"
+.container
+  %h1= "質問:#{@board.title}"
 
-= render "questions/question_list", questions: @board.questions
+  = render "questions/question_list", questions: @board.questions
 
-= link_to '質問のカスタマイズ', edit_user_question_board_path(current_user, @board)
+  = link_to '質問のカスタマイズ', edit_user_question_board_path(current_user, @board)
 
-= link_to 'メンバーへ回答依頼', new_user_question_board_invite_path(current_user, @board)
+  = link_to 'メンバーへ回答依頼', new_user_question_board_invite_path(current_user, @board), class: "btn btn-link"
