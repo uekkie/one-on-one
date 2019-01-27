@@ -4,11 +4,12 @@ Rails.application.routes.draw do
       omniauth_callbacks: "users/omniauth_callbacks"
   }
 
-  resources :users do
-    resources :answer_boards
-    resources :question_boards do
-      resources :questions
-      resources :invites
-    end
+  resources :answer_boards
+  resources :question_boards do
+    resources :questions
+    resources :invites, module: :question_boards
   end
+  resources :invites, module: :users
+  resource :survey
+  resources :surveys
 end

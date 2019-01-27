@@ -1,10 +1,8 @@
-class Users::InvitesController < ApplicationController
-
-  def index
-    @invites = Invite.where(user_id: current_user)
-  end
+class QuestionBoards::InvitesController < ApplicationController
 
   def new
+    @user = current_user
+    @board = current_user.question_boards.find(params[:question_board_id])
     @invite = Invite.new
   end
 
@@ -17,7 +15,7 @@ class Users::InvitesController < ApplicationController
 
     if @invite.save
       InviteMailer.creation_email(@invite).deliver_now
-      redirect_to invites_url, notice: "回答依頼を送信しました。"
+      redirect_to invites_url(@invite.question_board), notice: "回答依頼を送信しました。"
     else
       render :new
     end

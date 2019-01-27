@@ -3,6 +3,6 @@
 
   = render "questions/question_list", questions: @board.questions
 
-  = link_to '質問のカスタマイズ', edit_user_question_board_path(current_user, @board)
+  = link_to '質問のカスタマイズ', edit_question_board_path(@board)
 
-  = link_to 'メンバーへ回答依頼', new_user_question_board_invite_path(current_user, @board), class: "btn btn-link"
+  = link_to 'メンバーへ回答依頼', new_question_board_invite_path(@board), class: "btn btn-link"

@@ -2,6 +2,6 @@
 
 %ul.list-group
 - @boards.each do |board|
-  %li.list-group-item= link_to "ボード #{board.id}", user_question_board_path(current_user, board)
-= link_to 'ボードの作成', new_user_question_board_path(current_user)
-= link_to '回答を確認', user_answer_boards_path(current_user)
+  %li.list-group-item= link_to "ボード #{board.id}", question_board_path(current_user, board)
+= link_to 'ボードの作成', new_question_board_path
+= link_to '回答を確認', surveys_path

@@ -1,6 +1,6 @@
 %h1 メンバーへの回答依頼
 
-= form_with(model: [@user, @board, @invite], local: true) do |form|
+= form_with(model: [@board, @invite], local: true) do |form|
   - if @invite.errors.any?
     #error_explanation.alert.alert-danger
       %ul
@@ -13,4 +13,6 @@
     = form.text_field :email, placeholder: "メールアドレス", class: 'form-control'
   .actions.text-right
     = form.submit '送信', class: 'btn btn-primary mt-1'
-    = link_to 'キャンセル', user_question_board_path(@user, @board), class: 'btn btn-default mt-1'
+    = link_to 'キャンセル', question_board_path(@user, @board), class: 'btn btn-default mt-1'
+
+
