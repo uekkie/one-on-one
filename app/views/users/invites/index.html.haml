@@ -1,0 +1,5 @@
+%h1 回答依頼
+%ul.list-group
+  - @invites.each do |invite|
+    %li.list-group-item
+      = invite.member.name

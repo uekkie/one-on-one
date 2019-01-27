@@ -17,7 +17,7 @@ class QuestionBoardsController < ApplicationController
 
   def new
     @board = QuestionBoard.new
-    @question = Question.new
+    @question = @board.questions.new
   end
 
 
@@ -26,7 +26,7 @@ class QuestionBoardsController < ApplicationController
 
     respond_to do |format|
       if @board.save
-        format.html { redirect_to user_question_board_url(current_user, @board), notice: 'Board Created!'}
+        format.html { redirect_to question_board_url(@board), notice: 'Board Created!'}
       else
         format.html { render :new }
       end
@@ -35,7 +35,7 @@ class QuestionBoardsController < ApplicationController
 
   def update
     @board.update!(board_params)
-    redirect_to user_question_board_url(current_user, @board), notice: 'Board Updated!'
+    redirect_to question_board_url(@board), notice: 'Board Updated!'
   end
 
   def destroy

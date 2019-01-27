@@ -104,7 +104,7 @@
             <y>308.00</y>
         </location>
         <size>
-            <width>138.00</width>
+            <width>141.00</width>
             <height>80.00</height>
         </size>
         <zorder>6</zorder>
@@ -127,8 +127,16 @@
             <uid><![CDATA[2BA5A73C-7D14-4598-9F14-F1EC94807E01]]></uid>
         </SQLField>
         <SQLField>
-            <name><![CDATA[member_id]]></name>
+            <name><![CDATA[invite_id]]></name>
             <type><![CDATA[integer]]></type>
+            <referencesField>id</referencesField>
+            <referencesTable>invites</referencesTable>
+            <referencesField><![CDATA[id]]></referencesField>
+            <referencesTable><![CDATA[invites]]></referencesTable>
+            <sourceCardinality>0</sourceCardinality>
+            <destinationCardinality>0</destinationCardinality>
+            <referencesFieldUID><![CDATA[0604811D-8375-4741-A70B-EA457AD3E5FE]]></referencesFieldUID>
+            <referencesTableUID><![CDATA[A3ED8F04-C110-4B4C-96EA-875E75D2BC04]]></referencesTableUID>
             <uid><![CDATA[3D62A06A-67EE-431E-8DBC-0BE8E09A5DB8]]></uid>
         </SQLField>
         <ui.treeExpanded><![CDATA[1]]></ui.treeExpanded>
