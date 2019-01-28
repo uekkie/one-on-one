@@ -217,8 +217,8 @@
         <name><![CDATA[question_answers]]></name>
         <schema><![CDATA[]]></schema>
         <location>
-            <x>476.00</x>
-            <y>434.00</y>
+            <x>441.00</x>
+            <y>423.00</y>
         </location>
         <size>
             <width>196.00</width>
@@ -242,6 +242,7 @@
             <destinationCardinality>0</destinationCardinality>
             <referencesFieldUID><![CDATA[524BF7AD-4171-47DD-A784-48EECE3B0C27]]></referencesFieldUID>
             <referencesTableUID><![CDATA[5DDBD148-89BF-400A-A116-A44AF48914AB]]></referencesTableUID>
+            <connectorMidPoint><![CDATA[699.000000]]></connectorMidPoint>
             <uid><![CDATA[16DFACAA-F7DB-434F-8026-FA5C53F9ADB9]]></uid>
         </SQLField>
         <SQLField>
@@ -335,9 +336,9 @@
         <SQLEditorFileFormatVersion><![CDATA[4]]></SQLEditorFileFormatVersion>
         <uid><![CDATA[9735FA44-B6BE-4C3A-8065-24276BFBDA73]]></uid>
         <windowHeight><![CDATA[1177.000000]]></windowHeight>
-        <windowLocationX><![CDATA[935.000000]]></windowLocationX>
-        <windowLocationY><![CDATA[0.000000]]></windowLocationY>
-        <windowScrollOrigin><![CDATA[{4, 49}]]></windowScrollOrigin>
+        <windowLocationX><![CDATA[1155.000000]]></windowLocationX>
+        <windowLocationY><![CDATA[-6.000000]]></windowLocationY>
+        <windowScrollOrigin><![CDATA[{42, 49}]]></windowScrollOrigin>
         <windowWidth><![CDATA[960.000000]]></windowWidth>
     </SQLDocumentInfo>
     <AllowsIndexRenamingOnInsert><![CDATA[1]]></AllowsIndexRenamingOnInsert>
