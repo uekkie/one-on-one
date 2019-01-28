@@ -9,10 +9,7 @@ Rails.application.routes.draw do
 
   resources :answer_boards
   resources :question_boards do
-    resources :questions
-    resources :invites, module: :question_boards
+    resources :questions, only: %i(index edit new create)
+    resources :invites, module: :question_boards, only: %i(new create)
   end
-  resources :invites, module: :users
-  resource :survey
-  resources :surveys
 end

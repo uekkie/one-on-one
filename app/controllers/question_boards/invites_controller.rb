@@ -1,7 +1,7 @@
 class QuestionBoards::InvitesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_board, only: %i(new create)
-  
+
   def new
     @invite = Invite.new
   end
@@ -10,7 +10,7 @@ class QuestionBoards::InvitesController < ApplicationController
     @invite = @board.user.invites.build(invite_params)
     if @invite.save
       InviteMailer.creation_email(@invite).deliver_now
-      redirect_to invites_url, notice: "回答依頼を送信しました。"
+      redirect_to question_board_url(@invite.question_board), notice: "#{invite.name}さんに回答依頼を送信しました。"
     else
       render :new
     end

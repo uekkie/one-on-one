@@ -4,7 +4,8 @@
 %ul.list-group
   - @board.answers.each do |answer|
     %li.list-group-item
-      %h4= answer.question.title
+      .question
+        %strong= answer.question.title
       .answer= answer.content
 
 = link_to '戻る', answer_boards_path

@@ -1,7 +1,10 @@
 .container
   %h1 回答ボードの一覧
-  %ul.list-group
   - @boards.each do |board|
-    %li.list-group-item= link_to "#{board.invite.name} さんの回答", answer_board_path(board)
+    .row.list-group-item
+      .col-sm-3
+        = board.invite.question_board.title
+      .col-sm-6
+        = link_to "#{board.invite.name} さんの回答", answer_board_path(board)
 
   = link_to '質問ボードの一覧へ', question_boards_path

@@ -1,6 +1,0 @@
-%h1 回答依頼
-%ul.list-group
-  - @invites.each do |invite|
-    %li.list-group-item
-      = invite.name
-      = link_to '回答ページ', new_answer_board_url(token: invite.token)

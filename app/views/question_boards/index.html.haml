@@ -5,5 +5,5 @@
   %li.list-group-item= link_to board.title, question_board_path(board)
 
 = link_to 'ボードの作成', new_question_board_path
-= link_to '回答を確認', invites_path
+= link_to '回答を確認', answer_boards_path
 = link_to 'ログアウト', destroy_user_session_path, method: :delete
