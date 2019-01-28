@@ -1,2 +1,10 @@
-%h1 AnswerBoards#show
-%p Find me in app/views/answer_boards/show.html.haml
+= @board.invite.name
+= t(@board.created_at)
+
+%ul.list-group
+  - @board.answers.each do |answer|
+    %li.list-group-item
+      %h4= answer.question.title
+      .answer= answer.content
+
+= link_to '戻る', answer_boards_path

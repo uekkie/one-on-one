@@ -4,4 +4,4 @@
   - @board.questions.each do |question|
     %li= question.title
 
-= link_to '回答する', survey_url(token: @token)
+= link_to '回答する', new_answer_board_url(token: @token)

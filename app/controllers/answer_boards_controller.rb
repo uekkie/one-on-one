@@ -3,6 +3,10 @@ class AnswerBoardsController < ApplicationController
     @boards = AnswerBoard.all
   end
 
+  def show
+    @board = AnswerBoard.find(params[:id])
+  end
+
   def new
     @token = params[:token]
     invite = Invite.find_by(token: @token)
@@ -19,12 +23,17 @@ class AnswerBoardsController < ApplicationController
     invite = Invite.find_by(token: @token)
 
 
-    @answer_board = AnswerBoard.new(
+    @answer_board = AnswerBoard.create(
       user: invite.user,
       invite: invite
     )
-    
-    @answer_board.answers.build(answer_board_params)
+    invite.question_board.questions.each do |question|
+      answer = @answer_board.answers.build(
+        question: question,
+        content: params[:answer_board][:answers][question.id.to_s][:content]
+      )
+      answer.save
+    end
     if @answer_board.save
       redirect_to answer_boards_url, notice: '回答しました'
     else
@@ -32,9 +41,4 @@ class AnswerBoardsController < ApplicationController
     end
   end
 
-  private
-
-  def answer_board_params
-    params.require(:answer_board).permit(answers_attributes: [:content, :question_id])
-  end
 end
