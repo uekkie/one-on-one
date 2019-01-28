@@ -6,13 +6,14 @@
       %ul
         - @invite.errors.full_messages.each do |message|
           %li #{message}
-
   .field
     = form.text_field :name, placeholder: "名前", class: 'form-control'
   .field
     = form.text_field :email, placeholder: "メールアドレス", class: 'form-control'
+  .field
+    = form.hidden_field :question_board_id, value: @board.id
   .actions.text-right
     = form.submit '送信', class: 'btn btn-primary mt-1'
-    = link_to 'キャンセル', question_board_path(@user, @board), class: 'btn btn-default mt-1'
+    = link_to 'キャンセル', question_board_path(@board), class: 'btn btn-default mt-1'
 
 

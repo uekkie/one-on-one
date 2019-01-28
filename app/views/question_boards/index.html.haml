@@ -2,7 +2,8 @@
 
 %ul.list-group
 - @boards.each do |board|
-  %li.list-group-item= link_to "ボード #{board.id}", question_board_path(current_user, board)
+  %li.list-group-item= link_to board.title, question_board_path(current_user, board)
+  
 = link_to 'ボードの作成', new_question_board_path
 = link_to '回答を確認', surveys_path
 = link_to 'ログアウト', destroy_user_session_path, method: :delete

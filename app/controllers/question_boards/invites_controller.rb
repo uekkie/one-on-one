@@ -1,28 +1,27 @@
 class QuestionBoards::InvitesController < ApplicationController
-
+  before_action :authenticate_user!
+  before_action :set_board, only: %i(new create)
+  
   def new
-    @user = current_user
-    @board = current_user.question_boards.find(params[:question_board_id])
     @invite = Invite.new
   end
 
   def create
-    member = Member.find_or_create_by!(member_params)
-    @invite = current_user.invites.build(
-      question_board_id: params[:question_board_id],
-      member: member
-    )
-
+    @invite = @board.user.invites.build(invite_params)
     if @invite.save
       InviteMailer.creation_email(@invite).deliver_now
-      redirect_to invites_url(@invite.question_board), notice: "回答依頼を送信しました。"
+      redirect_to invites_url, notice: "回答依頼を送信しました。"
     else
       render :new
     end
   end
 
   private
-  def member_params
-    params.require(:invite).permit(:name, :email)
+  def set_board
+    @board = current_user.question_boards.find(params[:question_board_id])
+  end
+
+  def invite_params
+    params.require(:invite).permit(:name, :email, :question_board_id)
   end
 end

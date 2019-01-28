@@ -10,54 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_27_012551) do
+ActiveRecord::Schema.define(version: 2019_01_26_083355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answer_boards", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "member_id"
+    t.bigint "invite_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["member_id"], name: "index_answer_boards_on_member_id"
+    t.index ["invite_id"], name: "index_answer_boards_on_invite_id"
     t.index ["user_id"], name: "index_answer_boards_on_user_id"
   end
 
   create_table "answers", force: :cascade do |t|
     t.text "content", default: "", null: false
-    t.bigint "member_id"
+    t.bigint "answer_board_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["member_id"], name: "index_answers_on_member_id"
+    t.index ["answer_board_id"], name: "index_answers_on_answer_board_id"
   end
 
   create_table "invites", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "member_id"
     t.bigint "question_board_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "survey_token", default: "", null: false
-    t.index ["member_id"], name: "index_invites_on_member_id"
-    t.index ["question_board_id"], name: "index_invites_on_question_board_id"
-    t.index ["survey_token"], name: "index_invites_on_survey_token", unique: true
-    t.index ["user_id"], name: "index_invites_on_user_id"
-  end
-
-  create_table "members", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
+    t.string "token", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_members_on_email", unique: true
+    t.index ["question_board_id"], name: "index_invites_on_question_board_id"
+    t.index ["token"], name: "index_invites_on_token", unique: true
+    t.index ["user_id"], name: "index_invites_on_user_id"
   end
 
   create_table "question_answers", force: :cascade do |t|
     t.bigint "answer_id"
+    t.bigint "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["answer_id"], name: "index_question_answers_on_answer_id"
+    t.index ["question_id"], name: "index_question_answers_on_question_id"
   end
 
   create_table "question_boards", force: :cascade do |t|
@@ -95,13 +89,13 @@ ActiveRecord::Schema.define(version: 2019_01_27_012551) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "answer_boards", "members"
+  add_foreign_key "answer_boards", "invites"
   add_foreign_key "answer_boards", "users"
-  add_foreign_key "answers", "members"
-  add_foreign_key "invites", "members"
+  add_foreign_key "answers", "answer_boards"
   add_foreign_key "invites", "question_boards"
   add_foreign_key "invites", "users"
   add_foreign_key "question_answers", "answers"
+  add_foreign_key "question_answers", "questions"
   add_foreign_key "question_boards", "users"
   add_foreign_key "questions", "question_boards"
 end

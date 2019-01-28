@@ -1,3 +1,6 @@
-%ul.list-group
-  - questions.each do |question|
-    %li.list-group-item= question.title
+- if questions.empty?
+  質問を追加してください
+- else
+  %ul.list-group
+    - questions.each do |question|
+      %li.list-group-item= question.title

@@ -17,12 +17,14 @@ class QuestionBoardsController < ApplicationController
 
   def new
     @board = QuestionBoard.new
-    @question = @board.questions.new
+    @question = Question.new
   end
 
 
   def create
     @board = current_user.question_boards.new(board_params)
+    
+    @board.questions = Question.where(id: 1..4)
 
     respond_to do |format|
       if @board.save

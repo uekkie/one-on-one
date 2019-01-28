@@ -1,7 +1,7 @@
 .container
-  %h1 回答の一覧
+  %h1 回答ボードの一覧
   %ul.list-group
   - @boards.each do |board|
-    %li.list-group-item= link_to "ボード #{board.id}", user_question_board_path(current_user, board)
+    %li.list-group-item= link_to board.title, answer_board_path(board)
 
-  = link_to '質問の一覧へ', user_question_boards_path(current_user)
+  = link_to '質問ボードの一覧へ', question_boards_path
