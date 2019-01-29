@@ -1,9 +1,26 @@
 %h1 質問の一覧
 
-%ul.list-group
-- @boards.each do |board|
-  %li.list-group-item= link_to board.title, question_board_path(board)
+.container.mt-3.mb-3
+  - if @boards.any?
+    %ul.list-group
+      %li.list-group-item
+        .row
+          .col-md-8
+            = QuestionBoard.human_attribute_name :title
+          .col-md-4
+            = QuestionBoard.human_attribute_name :created_at
+      - @boards.each do |board|
+        %li.list-group-item
+          .row
+            .col-md-8
+              = link_to board.title, question_board_path(board)
+            .col-md-4
+              = l(board.created_at, format: :default)
+  - else
+    = link_to '質問を作成', new_question_board_path
+    して1on1をはじめましょう:)
 
-= link_to 'ボードの作成', new_question_board_path
-= link_to '回答を確認', answer_boards_path
-= link_to 'ログアウト', destroy_user_session_path, method: :delete
+%footer.container
+  = link_to '質問の作成', new_question_board_path
+  = link_to '回答を確認', answer_boards_path
+  = link_to 'ログアウト', destroy_user_session_path, method: :delete

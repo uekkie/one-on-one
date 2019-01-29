@@ -1,12 +1,4 @@
 class AnswerBoardsController < ApplicationController
-  def index
-    @boards = AnswerBoard.all
-  end
-
-  def show
-    @board = AnswerBoard.find(params[:id])
-  end
-
   def new
     @token = params[:token]
     invite = Invite.find_by(token: @token)

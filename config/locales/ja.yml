@@ -1,9 +1,16 @@
 ja:
+  activerecord:
+    models:
+      question_board:　質問
+    attributes:
+      question_board:
+        title: タイトル
+        created_at: 作成日時
   devise:
     omniauth_callbacks:
       success: 認証されました
-  date:
+  time:
     formats:
-      default: ! '%Y/%m/%d'
-      long: ! '%Y年%m月%d日(%a)'
-      short: ! '%m/%d'
+      default: "%Y/%m/%d"
+      long: "%Y年%m月%d日(%a)"
+      short: "%m/%d"

@@ -2,7 +2,7 @@
 = l(@board.created_at, format: :long)
 
 %ul.list-group
-  - @board.answers.each do |answer|
+  - @board.answers.includes(:question).each do |answer|
     %li.list-group-item
       .question
         %strong= answer.question.title
