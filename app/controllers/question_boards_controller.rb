@@ -1,6 +1,6 @@
 class QuestionBoardsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_board, only: %i(show edit update)
+  before_action :set_question_board, only: %i(show edit update)
 
   def index
     @boards = current_user.question_boards.order(created_at: :desc)
@@ -9,26 +9,25 @@ class QuestionBoardsController < ApplicationController
   def show
   end
 
-
   def edit
     @question = Question.new
   end
 
 
   def new
-    @board = QuestionBoard.new
+    @question_board = QuestionBoard.new
     @question = Question.new
   end
 
 
   def create
-    @board = current_user.question_boards.new(board_params)
+    @question_board = current_user.question_boards.new(board_params)
     
-    @board.questions = Question.where(id: 1..4)
+    @question_board.questions = Question.where(id: 1..4)
 
     respond_to do |format|
-      if @board.save
-        format.html { redirect_to question_board_url(@board), notice: 'Board Created!'}
+      if @question_board.save
+        format.html { redirect_to question_board_url(@question_board), notice: 'Board Created!'}
       else
         format.html { render :new }
       end
@@ -36,8 +35,8 @@ class QuestionBoardsController < ApplicationController
   end
 
   def update
-    @board.update!(board_params)
-    redirect_to question_board_url(@board), notice: 'Board Updated!'
+    @question_board.update!(board_params)
+    redirect_to question_board_url(@question_board), notice: 'Board Updated!'
   end
 
   def destroy
@@ -49,8 +48,7 @@ class QuestionBoardsController < ApplicationController
     params.require(:question_board).permit(:title)
   end
 
-  def set_board
-    @board = current_user.question_boards.find(params[:id])
+  def set_question_board
+    @question_board = current_user.question_boards.find(params[:id])
   end
-
 end

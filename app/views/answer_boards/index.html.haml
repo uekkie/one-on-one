@@ -1,10 +1,19 @@
 .container
   %h1 回答ボードの一覧
-  - @boards.each do |board|
-    .row.list-group-item
-      .col-sm-3
-        = board.invite.question_board.title
-      .col-sm-6
-        = link_to "#{board.invite.name} さんの回答", answer_board_path(board)
+  %ul.list-group
+    %li.list-group-item
+      .row
+        .col-md-4 ボード名
+        .col-md-4 回答者
+        .col-md-4 回答日
+    - @boards.each do |board|
+      %li.list-group-item
+        .row
+          .col-md-4
+            = board.invite.question_board.title
+          .col-md-4
+            = link_to "#{board.invite.name} さんの回答", answer_board_path(board)
+          .col-md-4
+            = l(board.created_at, format: :long)
 
   = link_to '質問ボードの一覧へ', question_boards_path

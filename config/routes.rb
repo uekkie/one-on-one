@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     delete '/users/sign_out', to: 'users/sessions#destroy', as: :destroy_user_session
   end
 
-  resources :answer_boards
+  resources :answer_boards, only: %i(index show new create)
   resources :question_boards do
     resources :questions, only: %i(index edit new create)
     resources :invites, module: :question_boards, only: %i(new create)
