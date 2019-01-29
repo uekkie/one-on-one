@@ -9,7 +9,3 @@
     = form.text_field :title, id: :item_title, placeholder: "タイトル", class: 'form-control'
   .actions.text-right
     = form.submit (yield :submit_label), class: 'btn btn-primary mt-1'
-
-- if board.id
-  = render "questions/question_list", questions: board.questions
-  = render "questions/form", board: board, question: @question

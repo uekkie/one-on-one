@@ -1,36 +1,56 @@
 class AnswerBoardsController < ApplicationController
+  before_action :set_token, :set_invite, :set_questions, except: %i(index show)
+  before_action :authenticate_user!, only: %i(index show)
+  
+  def index
+    @boards = current_user.answer_boards.order(created_at: :desc)
+  end
+
+  def show
+    @board = current_user.answer_boards.find(params[:id])
+  end
+
   def new
-    @token = params[:token]
-    invite = Invite.find_by(token: @token)
+    if AnswerBoard.where(invite: @invite).count
+      redirect_to thanks_url, notice: 'すでに回答済みです'
+    end
 
     @answer_board = AnswerBoard.new
     
-    invite.question_board.questions.each do |question|
+    @questions.each do |question|
       @answer_board.answers.new(question: question)
     end
   end
 
   def create
-    @token = params[:answer_board][:token]
-    invite = Invite.find_by(token: @token)
-
-
-    @answer_board = AnswerBoard.create(
-      user: invite.user,
-      invite: invite
+    @answer_board = @invite.user.answer_boards.create(
+      invite: @invite
     )
-    invite.question_board.questions.each do |question|
+    @questions.each do |question|
       answer = @answer_board.answers.build(
         question: question,
         content: params[:answer_board][:answers][question.id.to_s][:content]
       )
       answer.save
     end
+
     if @answer_board.save
-      redirect_to answer_boards_url, notice: '回答しました'
+      redirect_to thanks_url, notice: '回答が送信されました'
     else
-      render :new
+      render :new, token: @token
     end
   end
 
+  private
+  def set_token
+    @token = params[:token] || params[:answer_board][:token]
+  end
+
+  def set_invite
+    @invite = Invite.find_by(token: @token)
+  end
+  
+  def set_questions
+    @questions = @invite.question_board.questions
+  end
 end

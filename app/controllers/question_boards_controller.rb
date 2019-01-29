@@ -27,7 +27,7 @@ class QuestionBoardsController < ApplicationController
 
     respond_to do |format|
       if @question_board.save
-        format.html { redirect_to question_board_url(@question_board), notice: 'Board Created!'}
+        format.html { redirect_to question_board_url(@question_board), notice: '作成しました'}
       else
         format.html { render :new }
       end
@@ -36,7 +36,7 @@ class QuestionBoardsController < ApplicationController
 
   def update
     @question_board.update!(board_params)
-    redirect_to question_board_url(@question_board), notice: 'Board Updated!'
+    redirect_to question_board_url(@question_board), notice: '更新しました'
   end
 
   def destroy

@@ -1,11 +1,18 @@
 ja:
   activerecord:
     models:
-      question_board:　質問
+      question_board: 質問ボード
+      answer_board: 回答ボード
     attributes:
       question_board:
         title: タイトル
         created_at: 作成日時
+      invite:
+        name: 回答者
+      answer:
+        content: 本文
+      answer_board:
+        created_at: 回答日時
   devise:
     omniauth_callbacks:
       success: 認証されました
