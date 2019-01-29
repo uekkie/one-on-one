@@ -1,6 +1,10 @@
 class QuestionBoards::InvitesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_board, only: %i(new create)
+  before_action :set_board, only: %i(index new create)
+
+  def index
+    @invites = current_user.invites.order(created_at: :desc)
+  end
 
   def new
     @invite = Invite.new

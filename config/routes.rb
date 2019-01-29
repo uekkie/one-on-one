@@ -12,6 +12,6 @@ Rails.application.routes.draw do
 
   resources :question_boards do
     resources :questions, only: %i(index edit new create)
-    resources :invites, module: :question_boards, only: %i(new create)
+    resources :invites, module: :question_boards, only: %i(index new create)
   end
 end

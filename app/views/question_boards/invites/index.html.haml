@@ -1,0 +1,25 @@
+%h1= "#{Invite.model_name.human}の一覧"
+
+.container.mt-3.mb-3
+  - if @invites.any?
+    %ul.list-group
+      %li.list-group-item
+        .row
+          .col-md-8
+            = Invite.human_attribute_name :name
+          .col-md-4
+            = Invite.human_attribute_name :created_at
+      - @invites.each do |invite|
+        %li.list-group-item
+          .row
+            .col-md-8
+              = link_to "#{invite.name}さんの回答ページ", new_answer_board_path(token: invite.token)
+            .col-md-4
+              = l(invite.created_at, format: :default)
+  - else
+    = link_to "#{QuestionBoard.model_name.human}を作成", new_question_board_path
+    して1on1をはじめましょう:)
+
+%footer.container
+  = link_to "#{QuestionBoard.model_name.human}の作成", new_question_board_path
+  = link_to "#{AnswerBoard.model_name.human}の一覧へ", answer_boards_path

@@ -17,5 +17,3 @@
 ## ER Diagram
 
 ![er.png](er.png)
-
-

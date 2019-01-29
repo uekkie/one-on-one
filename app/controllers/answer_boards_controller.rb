@@ -1,7 +1,7 @@
 class AnswerBoardsController < ApplicationController
   before_action :set_token, :set_invite, :set_questions, except: %i(index show)
   before_action :authenticate_user!, only: %i(index show)
-  
+
   def index
     @boards = current_user.answer_boards.order(created_at: :desc)
   end
@@ -11,12 +11,12 @@ class AnswerBoardsController < ApplicationController
   end
 
   def new
-    if AnswerBoard.where(invite: @invite).count
+    if AnswerBoard.where(invite: @invite).count > 0
       redirect_to thanks_url, notice: 'すでに回答済みです'
     end
 
     @answer_board = AnswerBoard.new
-    
+
     @questions.each do |question|
       @answer_board.answers.new(question: question)
     end
@@ -49,7 +49,7 @@ class AnswerBoardsController < ApplicationController
   def set_invite
     @invite = Invite.find_by(token: @token)
   end
-  
+
   def set_questions
     @questions = @invite.question_board.questions
   end
