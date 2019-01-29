@@ -11,6 +11,7 @@ class QuestionBoards::InvitesController < ApplicationController
   end
 
   def create
+    # question_boards.invitesがいいかも
     @invite = @board.user.invites.build(invite_params)
     if @invite.save
       InviteMailer.creation_email(@invite).deliver_now

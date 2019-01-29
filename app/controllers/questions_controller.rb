@@ -5,6 +5,7 @@ class QuestionsController < ApplicationController
   def index
   end
 
+  # 削除する（viewも削除）
   def show
   end
 
@@ -25,6 +26,7 @@ class QuestionsController < ApplicationController
     end
   end
 
+  # 削除する
   def update
 
   end
@@ -35,8 +37,9 @@ class QuestionsController < ApplicationController
     params.require(:question).permit(:title)
   end
 
+  # quistion_board/application_controller.rb（module）の中でset_boardを行う
+  # set_question_boardがいいかも
   def set_board
     @board = current_user.question_boards.find(params[:question_board_id])
   end
-
 end

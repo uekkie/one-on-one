@@ -8,6 +8,12 @@ Rails.application.routes.draw do
   end
 
   resources :answer_boards, except: %i(destroy update)
+  # static_pagesのようなcontrollerにまとめるといいかも
+  # simple formを使用した時に複数形でないとエラーが発生すると第一回目の時に話があった
+  # 単数形で書く方が良い
+  # 名詞ではない
+  # ものではないのでmodelの考え方でないかもしれない
+  # answer_boardsのcollectionにするといいかも
   resource :thanks, only: :show
 
   resources :question_boards do
