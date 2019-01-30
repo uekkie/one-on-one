@@ -1,5 +1,4 @@
 class QuestionBoardsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_question_board, only: %i(show edit update)
 
   def index

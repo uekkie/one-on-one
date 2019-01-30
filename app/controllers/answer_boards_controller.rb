@@ -1,6 +1,6 @@
 class AnswerBoardsController < ApplicationController
   before_action :set_token, :set_invite, :set_questions, except: %i(index show)
-  before_action :authenticate_user!, only: %i(index show)
+  skip_before_action :authenticate_user!, except: %i(index show)
 
   def index
     @boards = current_user.answer_boards.order(created_at: :desc)

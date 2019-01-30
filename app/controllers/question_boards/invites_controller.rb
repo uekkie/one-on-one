@@ -1,5 +1,4 @@
 class QuestionBoards::InvitesController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_board, only: %i(index new create)
 
   def index
