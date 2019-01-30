@@ -1,5 +1,5 @@
 class QuestionBoards::InvitesController < ApplicationController
-  before_action :set_board, only: %i(index new create)
+  before_action :set_question_board, only: %i(index new create)
 
   def index
     @invites = current_user.invites.order(created_at: :desc)
@@ -20,8 +20,8 @@ class QuestionBoards::InvitesController < ApplicationController
   end
 
   private
-  def set_board
-    @board = current_user.question_boards.find(params[:question_board_id])
+  def set_question_board
+    @question_board = current_user.question_boards.find(params[:question_board_id])
   end
 
   def invite_params
