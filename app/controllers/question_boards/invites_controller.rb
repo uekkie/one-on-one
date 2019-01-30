@@ -10,7 +10,7 @@ class QuestionBoards::InvitesController < ApplicationController
   end
 
   def create
-    @invite = @board.user.invites.build(invite_params)
+    @invite = current_user.invites.build(invite_params)
     if @invite.save
       InviteMailer.creation_email(@invite).deliver_now
       redirect_to question_board_url(@invite.question_board), notice: "#{@invite.name}さんに回答依頼を送信しました。"
