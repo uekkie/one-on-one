@@ -1,6 +1,6 @@
 class AnswerBoardsController < ApplicationController
-  skip_before_action :authenticate_user!, except: %i(index show)
-  before_action :set_token, :set_invite, :set_questions, except: %i(index show)
+  skip_before_action :authenticate_user!, except: %i(index show thanks)
+  before_action :set_token, :set_invite, :set_questions, except: %i(index show thanks)
   before_action :check_answer, only: %i(new create)
 
   def index
@@ -30,10 +30,14 @@ class AnswerBoardsController < ApplicationController
     end
 
     if @answer_board.save
-      redirect_to thanks_url, notice: '回答が送信されました'
+      redirect_to thanks_answer_boards_url, notice: '回答が送信されました'
     else
       render :new, token: @token
     end
+  end
+
+
+  def thanks
   end
 
   private
@@ -51,7 +55,7 @@ class AnswerBoardsController < ApplicationController
 
   def check_answer
     if @invite.answer_board.present?
-      redirect_to thanks_url, notice: 'すでに回答済みです'
+      redirect_to thanks_answer_boards_url, notice: 'すでに回答済みです'
     end
   end
 end
