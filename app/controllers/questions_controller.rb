@@ -15,12 +15,10 @@ class QuestionsController < ApplicationController
   def create
     @question = @board.questions.build(question_params)
 
-    respond_to do |format|
-      if @question.save
-        format.html { redirect_to question_board_url(@board), notice: 'Question Created!'}
-      else
-        format.html { render :new }
-      end
+    if @question.save
+      redirect_to question_board_url(@board), notice: 'Question Created!'
+    else
+      render :new
     end
   end
 

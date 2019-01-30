@@ -24,12 +24,10 @@ class QuestionBoardsController < ApplicationController
     
     @question_board.questions = Question.where(id: 1..4)
 
-    respond_to do |format|
-      if @question_board.save
-        format.html { redirect_to question_board_url(@question_board), notice: '作成しました'}
-      else
-        format.html { render :new }
-      end
+    if @question_board.save
+      redirect_to question_board_url(@question_board), notice: '作成しました'
+    else
+      render :new
     end
   end
 
