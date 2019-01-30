@@ -20,15 +20,13 @@ class AnswerBoardsController < ApplicationController
   end
 
   def create
-    @answer_board = @invite.user.answer_boards.create(
-      invite: @invite
-    )
+    @answer_board = current_user.answer_boards.create(invite: @invite)
+
     @questions.each do |question|
       answer = @answer_board.answers.build(
         question: question,
         content: params[:answer_board][:answers][question.id.to_s][:content]
       )
-      answer.save
     end
 
     if @answer_board.save
