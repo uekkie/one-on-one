@@ -15,7 +15,7 @@ class AnswerBoardsController < ApplicationController
     @answer_board = AnswerBoard.new
 
     @questions.each do |question|
-      @answer_board.answers.new(question: question)
+      @answer_board.answers.build(question: question)
     end
   end
 

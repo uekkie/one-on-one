@@ -20,7 +20,7 @@ class QuestionBoardsController < ApplicationController
 
 
   def create
-    @question_board = current_user.question_boards.new(board_params)
+    @question_board = current_user.question_boards.build(board_params)
     
     @question_board.questions = Question.where(id: 1..4)
 

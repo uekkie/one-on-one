@@ -13,7 +13,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = @board.questions.new(question_params)
+    @question = @board.questions.build(question_params)
 
     respond_to do |format|
       if @question.save
