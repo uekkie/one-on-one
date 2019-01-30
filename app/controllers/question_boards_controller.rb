@@ -32,8 +32,11 @@ class QuestionBoardsController < ApplicationController
   end
 
   def update
-    @question_board.update!(board_params)
-    redirect_to question_board_url(@question_board), notice: '更新しました'
+    if @question_board.update(board_params)
+      redirect_to question_board_url(@question_board), notice: '更新しました'
+    else
+      render :edit
+    end
   end
 
   private
