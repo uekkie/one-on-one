@@ -38,6 +38,3 @@ group :development do
   gem "hirb"
   gem 'hirb-unicode'
 end
-
-
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
