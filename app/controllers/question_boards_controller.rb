@@ -36,9 +36,6 @@ class QuestionBoardsController < ApplicationController
     redirect_to question_board_url(@question_board), notice: '更新しました'
   end
 
-  def destroy
-  end
-
   private
 
   def board_params
