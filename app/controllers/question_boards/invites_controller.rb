@@ -1,6 +1,5 @@
 class QuestionBoards::InvitesController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_board, only: %i(index new create)
+  before_action :set_question_board, only: %i(index new create)
 
   def index
     @invites = current_user.invites.order(created_at: :desc)
@@ -11,7 +10,7 @@ class QuestionBoards::InvitesController < ApplicationController
   end
 
   def create
-    @invite = @board.user.invites.build(invite_params)
+    @invite = current_user.invites.build(invite_params)
     if @invite.save
       InviteMailer.creation_email(@invite).deliver_now
       redirect_to question_board_url(@invite.question_board), notice: "#{@invite.name}さんに回答依頼を送信しました。"
@@ -21,8 +20,8 @@ class QuestionBoards::InvitesController < ApplicationController
   end
 
   private
-  def set_board
-    @board = current_user.question_boards.find(params[:question_board_id])
+  def set_question_board
+    @question_board = current_user.question_boards.find(params[:question_board_id])
   end
 
   def invite_params
