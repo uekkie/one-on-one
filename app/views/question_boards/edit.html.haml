@@ -3,5 +3,5 @@
 - provide :submit_label, "更新"
 = render 'form', user: current_user, board: @question_board
 = render "questions/question_list", questions: @question_board.questions
-= render "questions/form", board: @question_board, question: @question
+= link_to '質問の追加', new_question_board_question_path(@question_board), class: 'btn btn-link'
 = link_to 'キャンセル', question_boards_path

@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_board, only: %i(show create)
+  before_action :set_question_board, only: %i(show new create)
 
   def index
   end
@@ -13,10 +13,10 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = @board.questions.build(question_params)
+    @question = @question_board.questions.build(question_params)
 
     if @question.save
-      redirect_to question_board_url(@board), notice: 'Question Created!'
+      redirect_to question_board_url(@question_board), notice: 'Question Created!'
     else
       render :new
     end
@@ -28,8 +28,8 @@ class QuestionsController < ApplicationController
     params.require(:question).permit(:title)
   end
 
-  def set_board
-    @board = current_user.question_boards.find(params[:question_board_id])
+  def set_question_board
+    @question_board = current_user.question_boards.find(params[:question_board_id])
   end
 
 end
