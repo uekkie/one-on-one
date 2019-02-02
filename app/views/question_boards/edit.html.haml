@@ -1,7 +1,5 @@
-%h1 質問のカスタマイズ
+%h1 質問ボード名の編集
 
 - provide :submit_label, "更新"
 = render 'form', user: current_user, board: @question_board
-= render "questions/question_list", questions: @question_board.questions
-= link_to '質問の追加', new_question_board_question_path(@question_board), class: 'btn btn-link'
-= link_to 'キャンセル', question_boards_path
+= link_to 'キャンセル', question_board_path(@question_board)
