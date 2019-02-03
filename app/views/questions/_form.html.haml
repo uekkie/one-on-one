@@ -1,4 +1,4 @@
-= form_with(model: [board, question], local: true) do |form|
+= form_with(model: [question_board, question], local: true) do |form|
   - if question.errors.any?
     #error_explanation.alert.alert-danger
       %ul
@@ -9,3 +9,4 @@
     = form.text_field :title, placeholder: "質問を書きます", class: 'form-control'
   .actions.text-right
     = form.submit '作成', class: 'btn btn-primary mt-1'
+    = link_to 'キャンセル', question_board_path(question_board), class: 'btn btn-default'

@@ -15,13 +15,13 @@ class QuestionBoardsController < ApplicationController
 
   def new
     @question_board = QuestionBoard.new
-    @question = Question.new
+    # @question = Question.new
   end
 
 
   def create
     @question_board = current_user.question_boards.build(board_params)
-    
+
     @question_board.questions = Question.where(id: 1..4)
 
     if @question_board.save
