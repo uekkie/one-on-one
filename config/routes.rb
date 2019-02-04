@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     get 'thanks', on: :collection
   end
 
-  resources :question_boards do
+  resources :question_boards , expect: %i(destroy) do
     resources :questions, only: %i(index edit new create)
     resources :invites, module: :question_boards, only: %i(index new create)
   end

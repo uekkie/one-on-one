@@ -12,12 +12,9 @@ class QuestionBoardsController < ApplicationController
     @question = Question.new
   end
 
-
   def new
     @question_board = QuestionBoard.new
-    # @question = Question.new
   end
-
 
   def create
     @question_board = current_user.question_boards.build(board_params)
