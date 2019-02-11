@@ -1,2 +1,5 @@
+%h1= "#{Question.model_name.human}の作成"
+- provide :submit_label, "作成"
+
 - if @question
   = render 'questions/form', question_board: @question_board, question: @question

@@ -1,9 +1,8 @@
 = form_with(model: question_board, local: true) do |form|
   - if question_board.errors.any?
     #error_explanation.alert.alert-danger
-      %ul
-        - question_board.errors.full_messages.each do |message|
-          %li #{message}
+      - question_board.errors.full_messages.each do |message|
+        #{message}
 
   .field
     = form.text_field :title, id: :item_title, placeholder: "タイトル", class: 'form-control'
