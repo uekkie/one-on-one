@@ -2,6 +2,7 @@ class QuestionBoard < ApplicationRecord
   belongs_to :user
   has_many :questions
 
+  validates :questions, length: {minimum: 1}
   after_initialize :build_default_questions, only: :create
 
   def build_default_questions
