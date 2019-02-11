@@ -1,16 +1,15 @@
-= form_with(model: board, local: true) do |form|
-  - board.answers.each do |answer|
-    .question-box.mt-3
-      = form.fields_for :answers, index: answer.question.id do |answer_form|
-        - if answer.errors.any?
-          .alert.alert-danger
-            %ul
-              - answer.errors.full_messages.each do |message|
-                %li #{message}
-        %strong= answer.question.title
-        .field
-          = answer_form.text_area :content,class: 'form-control'
-        = answer_form.hidden_field :question_id, value: answer.question.id
+= form_with(model: answer_board, local: true) do |form|
+  .question-box.mt-3
+    = form.fields_for :answers do |answer_form|
+      - answer = answer_form.object
+      %strong= answer.question.title
+      - if answer.errors.any?
+        .alert.alert-danger
+          - answer.errors.full_messages.each do |message|
+            #{message}
+      .field
+        = answer_form.text_area :content,class: 'form-control'
+      = answer_form.hidden_field :question_id, value: answer.question.id
   = form.hidden_field :token, value: @token
   .actions.text-right
     = form.submit (yield :submit_label), class: 'btn btn-primary mt-1'
