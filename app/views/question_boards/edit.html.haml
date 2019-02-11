@@ -1,5 +1,5 @@
-%h1 質問ボード名の編集
+%h1= "#{QuestionBoard.model_name.human}名の編集"
 
 - provide :submit_label, "更新"
-= render 'form', user: current_user, board: @question_board
-= link_to 'キャンセル', question_board_path(@question_board)
+= render 'form', user: current_user, question_board: @question_board
+= link_to 'キャンセル', question_board_path(@question_board), class: 'btn btn-default'

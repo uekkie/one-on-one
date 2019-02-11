@@ -1,7 +1,7 @@
 class AnswerBoardsController < ApplicationController
-  skip_before_action :authenticate_user!, except: %i(index show thanks)
-  before_action :set_token, :set_invite, :set_questions, except: %i(index show thanks)
-  before_action :check_answer, only: %i(new create)
+  skip_before_action :authenticate_user!, only: %i(new create)
+
+  before_action :set_token, :set_invite, :set_questions, :check_answer, only: %i(new create)
 
   def index
     @boards = current_user.answer_boards.order(created_at: :desc)
@@ -12,22 +12,16 @@ class AnswerBoardsController < ApplicationController
   end
 
   def new
-    @answer_board = AnswerBoard.new
-
-    @questions.each do |question|
-      @answer_board.answers.build(question: question)
+    answers ||= []
+    @invite.question_board.questions.each do |question|
+      answers.push(Answer.new(question: question))
     end
+
+    @answer_board = AnswerInputForm.new(invite: @invite, answers: answers)
   end
 
   def create
-    @answer_board = current_user.answer_boards.create(invite: @invite)
-
-    @questions.each do |question|
-      answer = @answer_board.answers.build(
-        question: question,
-        content: params[:answer_board][:answers][question.id.to_s][:content]
-      )
-    end
+    @answer_board = AnswerInputForm.new({invite: @invite}.merge(answer_input_params))
 
     if @answer_board.save
       redirect_to thanks_answer_boards_url, notice: '回答が送信されました'
@@ -57,5 +51,9 @@ class AnswerBoardsController < ApplicationController
     if @invite.answer_board.present?
       redirect_to thanks_answer_boards_url, notice: 'すでに回答済みです'
     end
+  end
+
+  def answer_input_params
+    params.require(:answer_board).permit(answers_attributes: [:content, :question_id])
   end
 end

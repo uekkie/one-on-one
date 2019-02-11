@@ -1,4 +1,5 @@
-%h1 質問の作成
+%h1= "#{Question.model_name.human}の作成"
 
 - provide :submit_label, "作成"
-= render 'form', board: @question_board
+= render 'form', question_board: @question_board
+= link_to 'キャンセル', question_boards_path, class: 'btn btn-default'

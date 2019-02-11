@@ -7,7 +7,6 @@ class QuestionsController < ApplicationController
   def show
   end
 
-
   def new
     @question = Question.new
   end
@@ -16,7 +15,7 @@ class QuestionsController < ApplicationController
     @question = @question_board.questions.build(question_params)
 
     if @question.save
-      redirect_to question_board_url(@question_board), notice: 'Question Created!'
+      redirect_to question_board_url(@question_board), notice: "「#{@question.title}」を追加しました🚀"
     else
       render :new
     end
