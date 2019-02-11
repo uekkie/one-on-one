@@ -2,10 +2,10 @@ class QuestionBoard < ApplicationRecord
   belongs_to :user
   has_many :questions
 
-  validates :questions, length: {minimum: 1}
-  after_initialize :build_default_questions, only: :create
+  before_save :prepare_questions
 
-  def build_default_questions
+  def prepare_questions
+    return true if self.id.present?
     self.questions = Question.where(id: 1..4)
   end
 end
