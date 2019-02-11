@@ -2,6 +2,8 @@ class QuestionBoard < ApplicationRecord
   belongs_to :user
   has_many :questions
 
+  validates :title, presence: true
+
   before_save :prepare_questions
 
   def prepare_questions
