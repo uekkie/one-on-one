@@ -19,8 +19,6 @@ class QuestionBoardsController < ApplicationController
   def create
     @question_board = current_user.question_boards.build(board_params)
 
-    @question_board.questions = Question.where(id: 1..4)
-
     if @question_board.save
       redirect_to question_board_url(@question_board), notice: '作成しました'
     else
