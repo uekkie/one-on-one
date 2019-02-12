@@ -7,16 +7,11 @@ Rails.application.routes.draw do
     delete '/users/sign_out', to: 'users/sessions#destroy', as: :destroy_user_session
   end
 
-  resources :answer_boards, except: %i(destroy update)
-  # static_pagesのようなcontrollerにまとめるといいかも
-  # simple formを使用した時に複数形でないとエラーが発生すると第一回目の時に話があった
-  # 単数形で書く方が良い
-  # 名詞ではない
-  # ものではないのでmodelの考え方でないかもしれない
-  # answer_boardsのcollectionにするといいかも
-  resource :thanks, only: :show
+  resources :answer_boards, except: %i(destroy update) do
+    get 'thanks', on: :collection
+  end
 
-  resources :question_boards do
+  resources :question_boards , expect: %i(destroy) do
     resources :questions, only: %i(index edit new create)
     resources :invites, module: :question_boards, only: %i(index new create)
   end

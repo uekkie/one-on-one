@@ -2,13 +2,17 @@ ja:
   activerecord:
     models:
       question_board: 質問ボード
+      question: 質問
       answer_board: 回答ボード
     attributes:
       question_board:
-        title: タイトル
+        title: ボード名
         created_at: 作成日時
+      question:
+        title: 質問の内容
       invite:
-        name: 回答者
+        name: 回答者の名前
+        email: メールアドレス
       answer:
         content: 本文
       answer_board:

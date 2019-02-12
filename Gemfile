@@ -23,13 +23,13 @@ gem 'jquery-rails'
 gem 'haml-rails'
 gem 'kaminari'
 
+gem 'mailgun_rails'
+gem 'newrelic_rpm'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'better_errors'
   gem 'binding_of_caller'
-  # developに移動
-  # 発生しないテストを書くことも可能なのでここにいてもいい可能性もある
-  gem 'bullet'
 end
 
 group :development do
@@ -39,10 +39,5 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem "hirb"
   gem 'hirb-unicode'
+  gem 'bullet'
 end
-
-# 上の全ての環境に適用しているGemに移動した方がいいかも
-# 必須でないので消しても大丈夫かもしれない
-# jrubyなどのプラットフォーム上で使用する。標準的なmacのような環境では不要かもしれない
-# zoneをみにいくファイルがないのでwindowsでは必要
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

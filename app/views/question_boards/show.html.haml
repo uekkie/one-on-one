@@ -1,12 +1,14 @@
 .container
-  %h1= @question_board.title
+  %h1
+    = @question_board.title
+  = link_to 'ボード名の編集', edit_question_board_path(@question_board)
 
   = render "questions/question_list", questions: @question_board.questions
 
-  = link_to '質問のカスタマイズ', edit_question_board_path(@question_board)
+  = link_to '質問の追加', new_question_board_question_path(@question_board)
 
   = link_to 'メンバーへ回答依頼', new_question_board_invite_path(@question_board)
 
-  = link_to '質問一覧へ', question_boards_path
-
   = link_to '招待一覧', question_board_invites_path(@question_board)
+
+  = link_to '戻る', question_boards_path

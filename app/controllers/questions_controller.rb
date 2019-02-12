@@ -1,34 +1,24 @@
 class QuestionsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_board, only: %i(show create)
+  before_action :set_question_board, only: %i(show new create)
 
   def index
   end
 
-  # 削除する（viewも削除）
   def show
   end
-
 
   def new
     @question = Question.new
   end
 
   def create
-    @question = @board.questions.new(question_params)
+    @question = @question_board.questions.build(question_params)
 
-    respond_to do |format|
-      if @question.save
-        format.html { redirect_to question_board_url(@board), notice: 'Question Created!'}
-      else
-        format.html { render :new }
-      end
+    if @question.save
+      redirect_to question_board_url(@question_board), notice: "「#{@question.title}」を追加しました🚀"
+    else
+      render :new
     end
-  end
-
-  # 削除する
-  def update
-
   end
 
   private
@@ -37,9 +27,8 @@ class QuestionsController < ApplicationController
     params.require(:question).permit(:title)
   end
 
-  # quistion_board/application_controller.rb（module）の中でset_boardを行う
-  # set_question_boardがいいかも
-  def set_board
-    @board = current_user.question_boards.find(params[:question_board_id])
+  def set_question_board
+    @question_board = current_user.question_boards.find(params[:question_board_id])
   end
+
 end

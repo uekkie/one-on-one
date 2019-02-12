@@ -10,24 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_25_082809) do
+ActiveRecord::Schema.define(version: 2019_02_11_150146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answer_boards", force: :cascade do |t|
-    # null:falseいれる
-    t.bigint "user_id"
     t.bigint "invite_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["invite_id"], name: "index_answer_boards_on_invite_id"
-    t.index ["user_id"], name: "index_answer_boards_on_user_id"
   end
 
   create_table "answers", force: :cascade do |t|
     t.text "content", default: "", null: false
-    # null:falseいれる
     t.bigint "answer_board_id"
     t.bigint "question_id"
     t.datetime "created_at", null: false
@@ -37,10 +33,7 @@ ActiveRecord::Schema.define(version: 2019_01_25_082809) do
   end
 
   create_table "invites", force: :cascade do |t|
-    # null:falseいれる
-  t.bigint "user_id"
-  # userからquestion_boardsを経由してinvitesを取れるかも
-  # has_many throughを使うとuserから直接invites取れる
+    t.bigint "user_id"
     t.bigint "question_board_id"
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
@@ -62,7 +55,6 @@ ActiveRecord::Schema.define(version: 2019_01_25_082809) do
 
   create_table "questions", force: :cascade do |t|
     t.string "title", default: "", null: false
-    # null:falseいれる
     t.bigint "question_board_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -79,12 +71,9 @@ ActiveRecord::Schema.define(version: 2019_01_25_082809) do
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
     t.string "users"
-    # providerとuidの複合でunique: true
     t.string "provider"
     t.string "uid"
-    # unique: true
     t.string "token"
-    # stringでなくてtext
     t.string "meta"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -92,7 +81,6 @@ ActiveRecord::Schema.define(version: 2019_01_25_082809) do
   end
 
   add_foreign_key "answer_boards", "invites"
-  add_foreign_key "answer_boards", "users"
   add_foreign_key "answers", "answer_boards"
   add_foreign_key "answers", "questions"
   add_foreign_key "invites", "question_boards"
