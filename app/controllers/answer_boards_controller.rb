@@ -12,15 +12,25 @@ class AnswerBoardsController < ApplicationController
   end
 
   def new
-    answers ||= []
-    @invite.question_board.questions.each do |question|
-      answers.push(Answer.new(question: question))
+    # nestedを使うとAnswerInputFormが不要かも
+
+    # eachをmapにする
+    answers= @invite.question_board.questions.map do |question|
+      Answer.new(question: question)
+
+      # answersの配列も不要になるかも？
+      # @invite.answer_board.answers.build(question: question)
+
+      # answers.push(Answer.new(question: question))
     end
 
     @answer_board = AnswerInputForm.new(invite: @invite, answers: answers)
   end
 
   def create
+    # nestedを使うともう少しシンプルにかける
+    @invite.build_answer_board(answer_input_params)
+
     @answer_board = AnswerInputForm.new({invite: @invite}.merge(answer_input_params))
 
     if @answer_board.save
@@ -40,6 +50,7 @@ class AnswerBoardsController < ApplicationController
   end
 
   def set_invite
+    # find_by!に変更
     @invite = Invite.find_by(token: @token)
   end
 

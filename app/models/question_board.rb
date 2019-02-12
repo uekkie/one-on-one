@@ -4,10 +4,14 @@ class QuestionBoard < ApplicationRecord
 
   validates :title, presence: true
 
+  # before_validateを使う
+  # after_initializeだとfindなどでも発動してしまう
+
   before_save :prepare_questions
 
   def prepare_questions
-    return true if self.id.present?
+    # trueがいらない？
+    return if self.persisted?
     self.questions = Question.where(id: 1..4)
   end
 end

@@ -9,6 +9,7 @@ class QuestionBoardsController < ApplicationController
   end
 
   def edit
+    # questions_controller.rbで処理しているので不要
     @question = Question.new
   end
 

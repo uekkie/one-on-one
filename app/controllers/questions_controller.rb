@@ -1,9 +1,12 @@
 class QuestionsController < ApplicationController
   before_action :set_question_board, only: %i(show new create)
 
+  # viewを含めて削除する
   def index
   end
 
+  # viewを含めて削除する
+  # viewのeditも削除する
   def show
   end
 

@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2019_02_11_150146) do
   enable_extension "plpgsql"
 
   create_table "answer_boards", force: :cascade do |t|
+    # referenceにはnull:falseが必要な箇所はいれていく
     t.bigint "invite_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -33,8 +34,15 @@ ActiveRecord::Schema.define(version: 2019_02_11_150146) do
   end
 
   create_table "invites", force: :cascade do |t|
+    # userはquestion_boardを経由して取れるのではないか？
     t.bigint "user_id"
+    # DB層でuniqueでかけなくてもrails層でかける場合もある
+    # DB層でかければrails層でもかける
+    # 仕様が変更される可能性がある場合は、DBでかけない方が柔軟性がある
+    # DBの負荷も制約をかけると少しある
     t.bigint "question_board_id"
+
+    # nilが入るとからになるのでdefault: ""をとる
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
     t.string "token", default: "", null: false
@@ -71,9 +79,15 @@ ActiveRecord::Schema.define(version: 2019_02_11_150146) do
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
     t.string "users"
+
+    # providerとuidでindex、unique設定
+    # 認証の箇所の処理によって適用するかを判断する
+    # 違うユーザーでログインされては絶対まずいのでそういう箇所は制約をかける意味は大きい
     t.string "provider"
     t.string "uid"
+
     t.string "token"
+    # hashデータが入る場合はtextがいい
     t.string "meta"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

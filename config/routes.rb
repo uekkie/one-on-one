@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :question_boards , expect: %i(destroy) do
+    # questionsもmodule: :question_boards適用すべきでは？
     resources :questions, only: %i(index edit new create)
     resources :invites, module: :question_boards, only: %i(index new create)
   end

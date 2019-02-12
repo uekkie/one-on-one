@@ -23,6 +23,9 @@ gem 'jquery-rails'
 gem 'haml-rails'
 gem 'kaminari'
 
+# ローカル環境でbundle installすると全てはいるのでproduction指定する意味はない（特に環境をしてしないため）
+# productionとstagingを指定する場合は意味があるかもしれない
+# production指定するのは意図レベルでしかない
 gem 'mailgun_rails'
 gem 'newrelic_rpm'
 
