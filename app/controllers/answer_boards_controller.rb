@@ -1,5 +1,5 @@
 class AnswerBoardsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i(new create)
+  skip_before_action :authenticate_user!, only: %i(new create thanks)
 
   before_action :set_token, :set_invite, :set_questions, :check_answer, only: %i(new create)
 
