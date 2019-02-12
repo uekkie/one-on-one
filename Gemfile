@@ -23,6 +23,9 @@ gem 'jquery-rails'
 gem 'haml-rails'
 gem 'kaminari'
 
+gem 'mailgun_rails'
+gem 'newrelic_rpm'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'better_errors'
