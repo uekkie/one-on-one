@@ -1,11 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_question_board, only: %i(show new create)
-
-  def index
-  end
-
-  def show
-  end
+  before_action :set_question_board, only: %i(new create)
 
   def new
     @question = Question.new
