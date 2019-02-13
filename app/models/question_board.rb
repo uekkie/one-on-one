@@ -4,10 +4,10 @@ class QuestionBoard < ApplicationRecord
 
   validates :title, presence: true
 
-  before_save :prepare_questions
+  before_validation :prepare_questions
 
   def prepare_questions
-    return true if self.id.present?
+    return if self.persisted?
     self.questions = Question.where(id: 1..4)
   end
 end
