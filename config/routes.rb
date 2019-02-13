@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :question_boards , expect: %i(destroy) do
-    resources :questions, only: %i(index edit new create)
+    resources :questions, module: :question_boards, only: %i(new create)
     resources :invites, module: :question_boards, only: %i(index new create)
   end
 end

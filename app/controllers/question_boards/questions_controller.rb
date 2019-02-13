@@ -1,4 +1,4 @@
-class QuestionsController < ApplicationController
+class QuestionBoards::QuestionsController < ApplicationController
   before_action :set_question_board, only: %i(new create)
 
   def new
