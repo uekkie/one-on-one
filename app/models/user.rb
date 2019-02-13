@@ -5,7 +5,6 @@ class User < ApplicationRecord
   has_many :invites
   has_many :answer_boards, through: :invites
 
-  protected
   def self.find_for_google(auth)
     user = User.find_by(email: auth.info.email)
 
