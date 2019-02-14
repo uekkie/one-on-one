@@ -2,7 +2,7 @@ class User < ApplicationRecord
   devise :trackable, :omniauthable, omniauth_providers: %i(google)
 
   has_many :question_boards
-  has_many :invites
+  has_many :invites, through: :question_boards
   has_many :answer_boards, through: :invites
 
   def self.find_for_google(auth)

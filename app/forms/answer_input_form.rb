@@ -11,7 +11,7 @@ class AnswerInputForm
   end
 
   def to_model
-    @invite.user.answer_boards.build(invite: @invite, answers: @answers)
+    @invite.build_answer_board(answers: @answers)
   end
 
   def save

@@ -1,6 +1,7 @@
 class QuestionBoard < ApplicationRecord
   belongs_to :user
   has_many :questions
+  has_many :invites
 
   validates :title, presence: true
   validates :user, presence: true

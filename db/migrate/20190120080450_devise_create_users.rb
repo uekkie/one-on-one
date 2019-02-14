@@ -35,10 +35,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       # t.datetime :locked_at
 
       # for Google Auth
-      t.string :users, :provider
-      t.string :users, :uid
-      t.string :users, :token
-      t.string :users, :meta
+      t.string :provider
+      t.string :uid
+      t.string :token
+      t.text   :meta
 
       t.timestamps null: false
     end

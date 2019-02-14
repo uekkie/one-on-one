@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2019_02_14_053206) do
   end
 
   create_table "answers", force: :cascade do |t|
-    t.text "content", default: "", null: false
+    t.text "content", null: false
     t.bigint "answer_board_id"
     t.bigint "question_id"
     t.datetime "created_at", null: false
@@ -34,9 +34,9 @@ ActiveRecord::Schema.define(version: 2019_02_14_053206) do
 
   create_table "invites", force: :cascade do |t|
     t.bigint "question_board_id"
-    t.string "name", default: "", null: false
-    t.string "email", default: "", null: false
-    t.string "token", default: "", null: false
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["question_board_id"], name: "index_invites_on_question_board_id"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2019_02_14_053206) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string "title", default: "", null: false
+    t.string "title", null: false
     t.bigint "question_board_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -68,11 +68,10 @@ ActiveRecord::Schema.define(version: 2019_02_14_053206) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
-    t.string "users"
     t.string "provider"
     t.string "uid"
     t.string "token"
-    t.string "meta"
+    t.text "meta"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
