@@ -26,7 +26,7 @@ class AnswerBoardsController < ApplicationController
     if @answer_board.save
       redirect_to thanks_answer_boards_url, notice: '回答が送信されました'
     else
-      render :new, token: @token
+      render :new
     end
   end
 
