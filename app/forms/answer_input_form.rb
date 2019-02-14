@@ -5,7 +5,7 @@ class AnswerInputForm
 
   def answers_attributes=(attributes)
     @answers ||= []
-    attributes.each do | answer_param |
+    attributes.each_value do | answer_param |
       @answers.push(Answer.new(answer_param))
     end
   end
