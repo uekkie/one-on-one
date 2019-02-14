@@ -10,20 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_11_150146) do
+ActiveRecord::Schema.define(version: 2019_02_14_053206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answer_boards", force: :cascade do |t|
-    t.bigint "invite_id"
+    t.bigint "invite_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["invite_id"], name: "index_answer_boards_on_invite_id"
   end
 
   create_table "answers", force: :cascade do |t|
-    t.text "content", default: "", null: false
+    t.text "content", null: false
     t.bigint "answer_board_id"
     t.bigint "question_id"
     t.datetime "created_at", null: false
@@ -33,16 +33,14 @@ ActiveRecord::Schema.define(version: 2019_02_11_150146) do
   end
 
   create_table "invites", force: :cascade do |t|
-    t.bigint "user_id"
     t.bigint "question_board_id"
-    t.string "name", default: "", null: false
-    t.string "email", default: "", null: false
-    t.string "token", default: "", null: false
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["question_board_id"], name: "index_invites_on_question_board_id"
     t.index ["token"], name: "index_invites_on_token", unique: true
-    t.index ["user_id"], name: "index_invites_on_user_id"
   end
 
   create_table "question_boards", force: :cascade do |t|
@@ -54,7 +52,7 @@ ActiveRecord::Schema.define(version: 2019_02_11_150146) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string "title", default: "", null: false
+    t.string "title", null: false
     t.bigint "question_board_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -70,11 +68,10 @@ ActiveRecord::Schema.define(version: 2019_02_11_150146) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
-    t.string "users"
     t.string "provider"
     t.string "uid"
     t.string "token"
-    t.string "meta"
+    t.text "meta"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -84,7 +81,6 @@ ActiveRecord::Schema.define(version: 2019_02_11_150146) do
   add_foreign_key "answers", "answer_boards"
   add_foreign_key "answers", "questions"
   add_foreign_key "invites", "question_boards"
-  add_foreign_key "invites", "users"
   add_foreign_key "question_boards", "users"
   add_foreign_key "questions", "question_boards"
 end

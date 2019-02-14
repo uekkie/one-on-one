@@ -3,7 +3,7 @@
     = @question_board.title
   = link_to 'ボード名の編集', edit_question_board_path(@question_board)
 
-  = render "questions/question_list", questions: @question_board.questions
+  = render "question_boards/questions/question_list", questions: @question_board.questions
 
   = link_to '質問の追加', new_question_board_question_path(@question_board)
 

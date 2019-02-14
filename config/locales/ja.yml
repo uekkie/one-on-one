@@ -19,7 +19,13 @@ ja:
         created_at: 回答日時
   devise:
     omniauth_callbacks:
-      success: 認証されました
+      success: ログインしました
+    sessions:
+      user:
+        signed_out: ログアウトしました
+    failure:
+      user:
+        unauthenticated: ログインが必要です
   time:
     formats:
       default: "%Y/%m/%d"

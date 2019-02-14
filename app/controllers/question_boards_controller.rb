@@ -9,7 +9,6 @@ class QuestionBoardsController < ApplicationController
   end
 
   def edit
-    @question = Question.new
   end
 
   def new
