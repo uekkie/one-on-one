@@ -15,9 +15,6 @@ class AnswerInputForm
   end
 
   def save
-    answer_board = to_model
-    return false if answer_board.invalid?
-    answer_board.save
-    true
+    to_model.save
   end
 end
