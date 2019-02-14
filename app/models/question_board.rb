@@ -3,6 +3,7 @@ class QuestionBoard < ApplicationRecord
   has_many :questions
 
   validates :title, presence: true
+  validates :user, presence: true
 
   before_validation :prepare_questions
 
