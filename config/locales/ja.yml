@@ -23,6 +23,9 @@ ja:
     sessions:
       user:
         signed_out: ログアウトしました
+    failure:
+      user:
+        unauthenticated: ログインが必要です
   time:
     formats:
       default: "%Y/%m/%d"
