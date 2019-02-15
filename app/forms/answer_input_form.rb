@@ -5,7 +5,7 @@ class AnswerInputForm
 
   def answers_attributes=(attributes)
     @answers ||= []
-    attributes.each do | i, answer_param |
+    attributes.each_value do | answer_param |
       @answers.push(Answer.new(answer_param))
     end
   end
@@ -15,9 +15,6 @@ class AnswerInputForm
   end
 
   def save
-    answer_board = to_model
-    return false if answer_board.invalid?
-    answer_board.save
-    true
+    to_model.save
   end
 end
