@@ -40,7 +40,7 @@ class AnswerBoardsController < ApplicationController
   end
 
   def set_invite
-    @invite = Invite.find_by(token: @token)
+    @invite = Invite.find_by!(token: @token)
   end
 
   def set_questions
