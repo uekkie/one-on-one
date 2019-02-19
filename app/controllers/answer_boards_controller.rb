@@ -12,16 +12,14 @@ class AnswerBoardsController < ApplicationController
   end
 
   def new
-    answers ||= []
+    @answer_board = @invite.build_answer_board
     @invite.question_board.questions.each do |question|
-      answers.push(Answer.new(question: question))
+      @answer_board.answers.build(question: question)
     end
-
-    @answer_board = AnswerInputForm.new(invite: @invite, answers: answers)
   end
 
   def create
-    @answer_board = AnswerInputForm.new({invite: @invite}.merge(answer_input_params))
+    @answer_board = @invite.build_answer_board(answer_input_params)
 
     if @answer_board.save
       redirect_to thanks_answer_boards_url, notice: '回答が送信されました'
@@ -54,6 +52,11 @@ class AnswerBoardsController < ApplicationController
   end
 
   def answer_input_params
-    params.require(:answer_board).permit(answers_attributes: [:content, :question_id])
+    params.require(:answer_board).permit(
+      answers_attributes: [
+        :content,
+        :question_id
+      ]
+    )
   end
 end
