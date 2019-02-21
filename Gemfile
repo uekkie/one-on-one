@@ -30,7 +30,9 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'better_errors'
   gem 'binding_of_caller'
-end
+  gem 'rspec-rails', '~> 3.6.0'
+  gem 'spring-commands-rspec'
+ end
 
 group :development do
   gem 'web-console', '>= 3.3.0'
@@ -40,4 +42,9 @@ group :development do
   gem "hirb"
   gem 'hirb-unicode'
   gem 'bullet'
+end
+
+group :test do
+  gem 'capybara', '~> 2.15.2'
+  gem 'launchy', '~> 2.4.3'
 end
