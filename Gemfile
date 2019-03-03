@@ -18,7 +18,7 @@ gem 'rails-i18n', '~> 5.1'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
-gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'kaminari'
@@ -30,7 +30,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'rspec-rails', '~> 3.6.0'
+  gem 'rspec-rails', '~> 3.8.2'
   gem 'spring-commands-rspec'
  end
 
@@ -47,4 +47,6 @@ end
 group :test do
   gem 'capybara', '~> 2.15.2'
   gem 'launchy', '~> 2.4.3'
+  gem 'chromedriver-helper'
+  gem 'selenium-webdriver'
 end
