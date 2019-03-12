@@ -58,6 +58,20 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  OmniAuth.config.test_mode = true
-  config.include OmniauthMacros
+  config.include Devise::Test::IntegrationHelpers, type: :system
+
+  # OmniAuth.config.test_mode = true
+  # config.include OmniauthMacros
+  OmniAuth.configure do |c|
+    c.test_mode = true
+    c.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new(
+      {
+        provider: "google_oauth2",
+        uid: "100000000000000000000",
+        info:  {
+          email: "john@example.com",
+          name: "John"
+        }
+    })
+  end
 end
