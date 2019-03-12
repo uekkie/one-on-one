@@ -42,6 +42,7 @@ group :development do
   gem "hirb"
   gem 'hirb-unicode'
   gem 'bullet'
+  gem 'rb-readline'
 end
 
 group :test do
