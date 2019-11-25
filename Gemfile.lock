@@ -344,7 +344,7 @@ DEPENDENCIES
   hirb-unicode
   jquery-rails
   kaminari
-  launchy (~> 2.4.3)
+  launchy
   listen (>= 3.0.5, < 3.2)
   mailgun_rails
   omniauth
@@ -362,6 +362,5 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   web-console (>= 3.3.0)
   webdrivers
-
 BUNDLED WITH
    2.0.2

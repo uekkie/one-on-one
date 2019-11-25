@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-
 gem 'rails', '~> 6.0.1'
 gem 'pg'
 gem 'puma', '~> 4.1'
@@ -9,11 +8,12 @@ gem 'sass-rails', '>= 6'
 gem 'rails-i18n', '~> 6.0.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 
-
+gem 'sassc-rails'
+gem 'rails-i18n'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
-gem 'bootstrap', '~> 4.3.1'
+gem 'bootstrap'
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'kaminari'
