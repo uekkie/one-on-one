@@ -2,18 +2,14 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 
-gem 'rails', '~> 5.2.2'
+gem 'rails', '~> 6.0.1'
 gem 'pg'
-gem 'puma', '~> 3.11'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.2'
-gem 'turbolinks', '~> 5'
-gem 'jbuilder', '~> 2.5'
-gem 'bootsnap', '>= 1.1.0', require: false
+gem 'puma', '~> 4.1'
+gem 'sass-rails', '>= 6'
+gem 'rails-i18n', '~> 6.0.0'
+gem 'bootsnap', '>= 1.4.2', require: false
 
 
-gem 'sassc-rails'
-gem 'rails-i18n', '~> 5.1'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
@@ -23,7 +19,6 @@ gem 'haml-rails'
 gem 'kaminari'
 
 gem 'mailgun_rails'
-gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -47,6 +42,6 @@ end
 group :test do
   gem 'capybara', '~> 2.15.2'
   gem 'launchy', '~> 2.4.3'
-  gem 'chromedriver-helper'
   gem 'selenium-webdriver'
+  gem 'webdrivers'
 end
